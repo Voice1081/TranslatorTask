@@ -1,40 +1,47 @@
+import java.util.ArrayList;
 public class Token {
-    private final Object value;
-    private final String text;
-    private final String type;
+	private final String text;
+	private final String value;
 
-    public Token(String type, String text, Object value) {
-        super();
-        this.type = type;
-        this.value = value;
-        this.text = text;
-    }
+	public String getChildrenTokensString() {
+		return childrenTokensString;
+	}
 
-    public Token(String type, String text) {
-        this(type, text, text);
-    }
+	private final String childrenTokensString;
+	private final String type;
 
-    public Object getValue() {
-        return value;
-    }
+	public ArrayList<Token> getChildren() {
+		return children;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public void setChildren(ArrayList<Token> children) {
+		this.children = children;
+	}
 
-    public String getText() {
-        return text;
-    }
+	private ArrayList<Token> children;
 
-    @Override
-    public String toString() {
-        return type + "[" + text + "]";
-    }
+	public Token(String type, String text, String value, String childrenTokensString) {
+		super();
+		this.type = type;
+		this.text = text;
+		this.value = value;
+		this.childrenTokensString = childrenTokensString;
+	}
 
-    @Override
-    public boolean equals(Object obj) {
-        Token other = (Token) obj;
-        return type.equals(other.type) && value.equals(other.value)
-                && text.equals(other.text);
-    }
+	public Token(String type, String text) {
+		this(type, text, text, null);
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	@Override
+	public String toString() {
+		return type + "[" + text + "]";
+	}
 }
