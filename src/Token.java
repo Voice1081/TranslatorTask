@@ -1,6 +1,11 @@
 import java.util.ArrayList;
 public class Token {
 	private final String text;
+
+	public String getValue() {
+		return value;
+	}
+
 	private final String value;
 
 	public String getChildrenTokensString() {
@@ -38,10 +43,5 @@ public class Token {
 
 	public String getText() {
 		return text;
-	}
-
-	@Override
-	public String toString() {
-		return type + "[" + text + "]";
 	}
 }
