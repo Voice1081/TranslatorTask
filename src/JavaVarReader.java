@@ -20,9 +20,4 @@ public class JavaVarReader extends IReadable {
         }
         return null;
     }
-
-    public static void main(String[] args){
-        JavaVarReader r = new JavaVarReader();
-        System.out.println(r.tryGetToken("int a;rthrthrth").getText());
-    }
 }

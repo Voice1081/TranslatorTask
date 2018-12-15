@@ -34,7 +34,7 @@ public class JavaForReader extends IReadable{
             }
         }
         if(firstBracketPos == -1 || lastBracketPos == 0 || firstBracketPos >= lastBracketPos) return null;
-        return new Token(getType(), input.substring(0, lastBracketPos+1), value,
-                body.substring(firstBracketPos, lastBracketPos+1));
+        return new Token(getType(), input.substring(0, value.length()+lastBracketPos+1), value,
+                body.substring(firstBracketPos+1, lastBracketPos));
     }
 }
