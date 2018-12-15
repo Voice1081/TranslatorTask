@@ -1,23 +1,15 @@
-public class JavaForReader extends IReadable{
-    public JavaForReader(){
-        setType("for");
+public class JavaEntryPointReader extends IReadable {
+    public JavaEntryPointReader(){
+        setType("entry point");
     }
 
     @Override
     protected Token tryGetToken(String input) {
-        if(!input.startsWith("for(")) return null;
+        if(!input.startsWith("public static void main(String[] args)")) return null;
         int firstBracketPos = -1;
         int lastBracketPos = 0;
         int counter = 0;
-        String value = null;
-        for(int i = 0; i < input.length(); i++) {
-            if(input.charAt(i) == ')') {
-                value = input.substring(0, i + 1);
-                break;
-            }
-        }
-        if(value == null) return null;
-        String body = input.substring(value.length());
+        String body = input.substring(39);
         for(int i = 0; i < body.length(); i++){
             char ch = body.charAt(i);
             if(ch == '{'){
@@ -34,7 +26,7 @@ public class JavaForReader extends IReadable{
             }
         }
         if(firstBracketPos == -1 || lastBracketPos == 0 || firstBracketPos >= lastBracketPos) return null;
-        return new Token(getType(), input.substring(0, lastBracketPos+1), value,
+        return new Token(getType(), input.substring(0, lastBracketPos+1), "public static void main(String[] args)",
                 body.substring(firstBracketPos, lastBracketPos+1));
     }
 }
