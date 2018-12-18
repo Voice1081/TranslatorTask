@@ -4,6 +4,9 @@ public class JavaVarTranslator implements ITranslator {
     public void setName(String name) {
         this.name = name;
     }
+    public JavaVarTranslator(){
+        setName("var");
+    }
 
     @Override
     public String getName() {
@@ -29,7 +32,7 @@ public class JavaVarTranslator implements ITranslator {
     public Token translateFromPseudoCode(Token source) {
         String[] parts = source.getValue().split(", ");
         String code = parts[0] + " " + parts[1];
-        if(parts.length == 3)
+        if(!parts[2].equals(""))
             code += " = " + parts[2];
         return new Token(getName(), code);
     }
