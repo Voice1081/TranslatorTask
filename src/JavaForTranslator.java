@@ -19,8 +19,10 @@ public class JavaForTranslator implements ITranslator {
         for(int i = 0; i < cycle.length(); i++){
             char ch = cycle.charAt(i);
             if(ch == '(') startIndex = i;
-            if(ch == ')') finishIndex = i;
-            break;
+            if(ch == ')') {
+                finishIndex = i;
+                break;
+            }
         }
         String[] parts = cycle.substring(startIndex+1, finishIndex).split(";");
         String[] indexNameAndStartValue = parts[0].trim().substring(4).split("=");
