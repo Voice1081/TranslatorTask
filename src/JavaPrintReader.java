@@ -16,6 +16,6 @@ public class JavaPrintReader extends IReadable {
             }
         }
         if(endIndex == 0) return null;
-        return new Token(getType(), input.substring(0, 20+endIndex));
+        return new Token(getType(), input.substring(19, 18+endIndex));
     }
 }

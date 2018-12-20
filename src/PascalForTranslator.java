@@ -79,7 +79,7 @@ public class PascalForTranslator implements ITranslator {
             finishValue = parts[3];
             operator = " downto ";
         }
-        String code = "for " + parts[0] + ":=" + parts[1] + operator + finishValue + " do";
+        String code = "var" + parts[0] + ": Integer\n" + "for " + parts[0] + ":=" + parts[1] + operator + finishValue + " do";
         Token tok = new Token(getName(),code);
         tok.setChildren(source.getChildren());
         return tok;

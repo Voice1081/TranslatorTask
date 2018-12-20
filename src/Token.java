@@ -44,4 +44,13 @@ public class Token {
 	public String getText() {
 		return text;
 	}
+	@Override
+	public String toString(){
+		StringBuilder text = new StringBuilder(getValue());
+		if(getChildren() != null){
+			for(Token t : getChildren())
+				text.append(t.toString());
+		}
+		return text.toString();
+	}
 }
