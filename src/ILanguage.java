@@ -1,12 +1,12 @@
 import java.util.*;
 
 public abstract class ILanguage {
-    private String name;
-    private Lexer lexer;
+    protected String name;
+    protected Lexer lexer;
     public Lexer getLexer() {
         return lexer;
     }
-    private HashMap<String, ITranslator> translators;
+    protected HashMap<String, ITranslator> translators;
     public String getName() {
         return name;
     }
@@ -16,4 +16,6 @@ public abstract class ILanguage {
     public ITranslator getTranslator(String type){
         return translators.get(type);
     }
+    protected IReadable EntryPointReader;
+
 }

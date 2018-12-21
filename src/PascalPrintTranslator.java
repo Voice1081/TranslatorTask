@@ -1,4 +1,7 @@
 public class PascalPrintTranslator implements ITranslator {
+    public PascalPrintTranslator(){
+        setName("print");
+    }
     private String name;
     @Override
     public void setName(String name) {

@@ -1,6 +1,6 @@
-public class JavaPrintTranslator implements ITranslator {
-    public JavaPrintTranslator(){
-        setName("print");
+public class JavaEntryPointTranslator implements ITranslator {
+    public JavaEntryPointTranslator(){
+        setName("entry point");
     }
     private String name;
     @Override
@@ -20,6 +20,10 @@ public class JavaPrintTranslator implements ITranslator {
 
     @Override
     public Token translateFromPseudoCode(Token source) {
-        return new Token(getName(), "System.out.println(" + source.getValue() + ");");
+        Token t = new Token(getName(), null, "public class Main\n" +
+                "{\n" +
+                "\tpublic static void main(String[] args)", null, "}");
+        t.setChildren(source.getChildren());
+        return t;
     }
 }

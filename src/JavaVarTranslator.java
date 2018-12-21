@@ -19,7 +19,7 @@ public class JavaVarTranslator implements ITranslator {
         String type;
         String value = "";
         String[] parts = source.getValue().split("=");
-        if(parts.length != 0){
+        if(parts.length > 1){
             value = parts[1].trim();
         }
         String[] typeAndName = source.getValue().split(" ");
@@ -32,8 +32,9 @@ public class JavaVarTranslator implements ITranslator {
     public Token translateFromPseudoCode(Token source) {
         String[] parts = source.getValue().split(", ");
         String code = parts[0] + " " + parts[1];
-        if(!parts[2].equals(""))
+        if(parts.length > 2)
             code += " = " + parts[2];
+        code += ";";
         return new Token(getName(), code);
     }
 }

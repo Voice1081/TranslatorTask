@@ -2,6 +2,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Translator {
+    public Translator(){
+        this.languages = new HashMap<>();
+    }
     private HashMap<String, ILanguage> languages;
 
     public void register(ILanguage language) {
@@ -36,15 +39,33 @@ public class Translator {
         return dstCode;
     }
 
-        private ArrayList<Token> translate(ILanguage key, ILanguage dst, ArrayList < Token > tokens){
-            ArrayList<Token> pseudoCode = translateToPseudoCode(key, tokens);
-            return translateFromPseudoCode(dst, pseudoCode);
-        }
+    private ArrayList<Token> translate(ILanguage key, ILanguage dst, ArrayList < Token > tokens){
+        ArrayList<Token> pseudoCode = translateToPseudoCode(key, tokens);
+        return translateFromPseudoCode(dst, pseudoCode);
+    }
 
-        public ArrayList<Token> translate(String langFrom, String langTo, String source){
-            ILanguage key = getLanguage(langFrom);
-            ILanguage dst = getLanguage(langTo);
-            ArrayList<Token> tokens = key.getLexer().tokenize(source);
-            return translate(key, dst, tokens);
+    public ArrayList<Token> translate(String langFrom, String langTo, String source){
+        ILanguage key = getLanguage(langFrom);
+        ILanguage dst = getLanguage(langTo);
+        ArrayList<Token> tokens = getTokens(key, source);
+        return translate(key, dst, tokens);
+    }
+
+    public String translate(ArrayList<Token> tokens){
+        StringBuilder text = new StringBuilder();
+        for(Token t : tokens)
+            text.append(t.toString());
+        return text.toString();
+    }
+
+    private ArrayList<Token> getTokens(ILanguage key, String source){
+        ArrayList<Token> tokens = key.getLexer().tokenize(source);
+        ArrayList<Token> entryPoint = new ArrayList<>();
+        for(Token t : tokens) {
+            if (t.getType().equals("entry point"))
+                entryPoint.add(t);
         }
+        return entryPoint;
+    }
+
 }

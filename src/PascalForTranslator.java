@@ -1,4 +1,7 @@
 public class PascalForTranslator implements ITranslator {
+    public PascalForTranslator(){
+        setName("for");
+    }
     private String name;
     @Override
     public void setName(String name) {
@@ -19,18 +22,18 @@ public class PascalForTranslator implements ITranslator {
         String increment = "";
         int startValuePos = 0;
         int finishValuePos = 0;
-        for(int i = 0; i < code.length()-2; i++){
+        for(int i = 0; i < code.length()-7; i++){
             char ch = code.charAt(i);
             if(Character.isLetter(ch)) name.append(ch);
             if(code.substring(i+1, i+3).equals(":="))
                 startValuePos = i + 3;
-            if(code.substring(i+1, i+7).equals("to") && startValuePos != 0) {
-                finishValuePos = i + 7;
+            if(code.substring(i+1, i+3).equals("to") && startValuePos != 0) {
+                finishValuePos = i + 3;
                 increment = "++";
                 break;
             }
-            if(code.substring(i+1, i+3).equals("to") && startValuePos != 0) {
-                finishValuePos = i + 3;
+            if(code.substring(i+1, i+7).equals("downto") && startValuePos != 0) {
+                finishValuePos = i + 7;
                 increment = "--";
                 break;
             }
@@ -79,7 +82,7 @@ public class PascalForTranslator implements ITranslator {
             finishValue = parts[3];
             operator = " downto ";
         }
-        String code = "var" + parts[0] + ": Integer\n" + "for " + parts[0] + ":=" + parts[1] + operator + finishValue + " do";
+        String code = "var " + parts[0] + ": Integer;\n" + "for " + parts[0] + ":=" + parts[1] + operator + finishValue + " do";
         Token tok = new Token(getName(),code);
         tok.setChildren(source.getChildren());
         return tok;

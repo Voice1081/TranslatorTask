@@ -7,6 +7,7 @@ public class Token {
 	}
 
 	private final String value;
+	private final String suffix;
 
 	public String getChildrenTokensString() {
 		return childrenTokensString;
@@ -31,6 +32,16 @@ public class Token {
 		this.text = text;
 		this.value = value;
 		this.childrenTokensString = childrenTokensString;
+		this.suffix = null;
+	}
+
+	public Token(String type, String text, String value, String childrenTokensString, String suffix) {
+		super();
+		this.type = type;
+		this.text = text;
+		this.value = value;
+		this.childrenTokensString = childrenTokensString;
+		this.suffix = suffix;
 	}
 
 	public Token(String type, String text) {
@@ -49,8 +60,9 @@ public class Token {
 		StringBuilder text = new StringBuilder(getValue());
 		if(getChildren() != null){
 			for(Token t : getChildren())
-				text.append(t.toString());
+				text.append("\n" + t.toString());
 		}
+		if(suffix != null) text.append(suffix);
 		return text.toString();
 	}
 }

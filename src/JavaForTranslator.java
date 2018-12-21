@@ -1,5 +1,8 @@
 public class JavaForTranslator implements ITranslator {
 
+    public JavaForTranslator(){
+        setName("for");
+    }
     private String name;
     @Override
     public void setName(String name) {
@@ -31,14 +34,14 @@ public class JavaForTranslator implements ITranslator {
         StringBuilder _finishValue = new StringBuilder();
         StringBuilder _operator = new StringBuilder();
         for(int i = 0; i < parts[1].length(); i++){
-            char ch = cycle.charAt(i);
+            char ch = parts[1].charAt(i);
             if(ch == '<' || ch == '>' || ch == '=') _operator.append(ch);
             if(Character.isDigit(ch)) _finishValue.append(ch);
         }
         String finishValue = _finishValue.toString();
         String operator = _operator.toString();
         String increment;
-        if(parts[3].contains("++"))
+        if(parts[2].contains("++"))
             increment = "++";
         else increment = "--";
         String pseudoCode = indexName + ", " + startValue + ", " + operator + ", " + finishValue + ", " + increment;

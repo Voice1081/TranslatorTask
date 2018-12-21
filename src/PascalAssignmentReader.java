@@ -14,7 +14,7 @@ public class PascalAssignmentReader extends IReadable {
         if(_name.length() == 0) return null;
         String name = _name.toString();
         String value = input.substring(name.length());
-        if(!value.startsWith(":=")) return null;
+        if(!value.startsWith(" :=")) return null;
         for(int i = 0; i < value.length(); i++){
             char ch = value.charAt(i);
             if(ch == ';') return new Token(getType(), input.substring(0, i+2));

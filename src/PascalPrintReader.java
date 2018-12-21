@@ -16,6 +16,6 @@ public class PascalPrintReader extends IReadable {
             }
         }
         if(endIndex == 0) return null;
-        return new Token(getType(), input.substring(8, 6+endIndex));
+        return new Token(getType(), input.substring(0, 8+endIndex), input.substring(8, 6+endIndex), null);
     }
 }

@@ -1,6 +1,6 @@
 public class PascalCloseBracketReader extends IReadable {
     public PascalCloseBracketReader(){
-        setType("open bracket");
+        setType("close bracket");
     }
     @Override
     protected Token tryGetToken(String input) {

@@ -1,6 +1,6 @@
-public class PascalOpenBracketTranslator implements ITranslator {
-    public PascalOpenBracketTranslator(){
-        setName("open bracket");
+public class PascalEntryPointTranslator implements ITranslator {
+    public PascalEntryPointTranslator(){
+        setName("entry point");
     }
     private String name;
     @Override
@@ -15,11 +15,13 @@ public class PascalOpenBracketTranslator implements ITranslator {
 
     @Override
     public Token translateToPseudoCode(Token source) {
-        return new Token(getName(), "{");
+        return source;
     }
 
     @Override
     public Token translateFromPseudoCode(Token source) {
-        return new Token(getName(), "begin");
+        Token t = new Token(getName(), null, "", null, "\nend.");
+        t.setChildren(source.getChildren());
+        return t;
     }
 }

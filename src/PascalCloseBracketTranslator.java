@@ -15,7 +15,7 @@ public class PascalCloseBracketTranslator implements ITranslator {
 
     @Override
     public Token translateToPseudoCode(Token source) {
-        return source;
+        return new Token(getName(), "}");
     }
 
     @Override

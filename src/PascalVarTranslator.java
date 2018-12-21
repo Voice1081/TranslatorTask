@@ -15,9 +15,9 @@ public class PascalVarTranslator implements ITranslator{
         setName("var");
         pascalTypes = new HashMap<>();
         pseudoCodeTypes = new HashMap<>();
-        addType("Integer", "int");
-        addType("Real", "double");
-        addType("String", "String");
+        addType("Integer;", "int");
+        addType("Real;", "double");
+        addType("String;", "String");
     }
 
     @Override
@@ -30,8 +30,8 @@ public class PascalVarTranslator implements ITranslator{
         String name;
         String type;
         String[] typeAndName = source.getValue().substring(4).split(": ");
-        type = pseudoCodeTypes.get(typeAndName[0]);
-        name = typeAndName[1];
+        type = pseudoCodeTypes.get(typeAndName[1]).trim();
+        name = typeAndName[0];
         return new Token(getName(), type + ", " + name);
     }
 
@@ -40,7 +40,7 @@ public class PascalVarTranslator implements ITranslator{
         String[] parts = source.getValue().split(", ");
         String type = parts[0];
         String name = parts[1];
-        String code = "var " + name + ": " + pascalTypes.get(type);
+        String code = "var " + name + ": " + pascalTypes.get(type) + ";";
         return new Token(getName(), code);
     }
 }
